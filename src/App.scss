@@ -1,8 +1,87 @@
+*{
+    background-color: #C0392B;
+}
+
+.root h1
+{
+    background-color: white;
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+}
+
+.root
+{
+    margin-top: 200px;
+    margin-left: 450px;
+    padding: 50px 50px;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    min-width: 350px;
+    background-color: white;
+    max-height: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+#newTask
+{
+    position: relative;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+#taskInput
+{
+    background-color: white;
+    border-radius: 6px;
+    border: 3px solid #d1d3d8;
+    width: 80%;
+    height: 30px;
+}
+
+#delete
+{
+    background-color: white;
+    float: right;
+    border-radius: 4px;
+}
+
+#add
+{
+    width: 20%;
+    height: 38px;
+    margin-left: 10px;
+    border-radius:5px;
+    font-weight: 500;
+    background-color: #C0392B;
+    border: none;
+    color: white;
+  
+}
+
 .list-container {
     padding: 16px;
+    background-color: white;
+    // display: flex;
 }
 
 .list-paragraph {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 20px;
+    font-weight: lighter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #c5e1e6;
+    height: 40px;
+    margin-bottom: 9px;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 96.5%;
+    border-radius: 5px;
+    border: 1px solid #939697;
 }

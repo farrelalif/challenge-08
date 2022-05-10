@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './reset.scss';
 import './App.scss';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -21,10 +22,11 @@ function App() {
                 <div key={index} className={'list-container'}>
                     <p className={'list-paragraph'}>
                         {value}
+                        <button id='delete' onClick={() => deleteTodoList(index)}>
+                        {/* <FontAwesomeIcon icon="fa-solid fa-trash" /> */} {'x'}
+                        </button>
                     </p>
-                    <button onClick={() => deleteTodoList(index)}>
-                        {'Delete'}
-                    </button>
+                    
                 </div>
             );
         });
@@ -59,9 +61,10 @@ function App() {
 
     return (
         <div className={'root'}>
-            <form onSubmit={() => createTodoList(todo)} >
-                <input onChange={(e) => setTodo(e.target.value)} />
-                <button type='submit'>
+            <h1>Todo List Kelompok 3</h1>
+            <form id='newTask' onSubmit={() => createTodoList(todo)} >
+                <input id='taskInput' placeholder='Task to do ...' onChange={(e) => setTodo(e.target.value)} />
+                <button id='add' type='submit'>
                     {'Add'}
                 </button>
             </form>
