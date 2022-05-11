@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './reset.scss';
 import './App.scss';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
     const [loading, setLoading] = useState(true);
     const [todo, setTodo] = useState('');
+    const [todoUpdate, setTodoUpdate] = useState('');
     const [list, setList] = useState();
+    const [update, setUpdate] = useState(false);
+    const [updateIndex, setUpdateIndex] = useState(null);
 
     useEffect(() => {
         const item = sessionStorage.getItem('todolist');
@@ -14,19 +16,42 @@ function App() {
         setLoading(false);
     }, [list]);
 
+    const handleUpdate = (index, value) => {
+        updateTodoList(index, value);
+        setUpdate(null);
+        setUpdate(false);
+    };
+
     // Function Get Todo List
     const getTodoList = () => {
         if (!list) return null;
         return list.map((value, index) => {
             return (
                 <div key={index} className={'list-container'}>
-                    <p className={'list-paragraph'}>
-                        {value}
-                        <button id='delete' onClick={() => deleteTodoList(index)}>
-                        {/* <FontAwesomeIcon icon="fa-solid fa-trash" /> */} {'x'}
+                    {(update && index === updateIndex)? (
+                        <div className={'list-paragraph'}>
+                            <input placeholder={value} onChange={(e) => setTodoUpdate(e.target.value)} />
+                        </div>
+                    ) : (
+                        <p className={'list-paragraph'}>
+                            {value}
+                        </p>
+                    )}
+                    {(update && index === updateIndex) ? (
+                        <button onClick={() => handleUpdate(index, todoUpdate)}>
+                            {'Save'}
                         </button>
-                    </p>
-                    
+                    ) : (
+                        <button onClick={() => {
+                            setUpdateIndex(index);
+                            setUpdate(true);
+                        }}>
+                            {'Update'}
+                        </button>
+                    )}
+                    <button id='delete' onClick={() => deleteTodoList(index)}>
+                        {'Delete'}
+                    </button>
                 </div>
             );
         });
@@ -61,14 +86,16 @@ function App() {
 
     return (
         <div className={'root'}>
-            <h1>Todo List Kelompok 3</h1>
-            <form id='newTask' onSubmit={() => createTodoList(todo)} >
-                <input id='taskInput' placeholder='Task to do ...' onChange={(e) => setTodo(e.target.value)} />
-                <button id='add' type='submit'>
-                    {'Add'}
-                </button>
-            </form>
-            {getTodoList()}
+            <div className={'container'}>
+                <h1>Todo List Kelompok 3</h1>
+                <form id='newTask' onSubmit={() => createTodoList(todo)} >
+                    <input id='taskInput' placeholder='Task to do ...' onChange={(e) => setTodo(e.target.value)} />
+                    <button id='add' type='submit'>
+                        {'Add'}
+                    </button>
+                </form>
+                {getTodoList()}
+            </div>
         </div>
     );
 };
